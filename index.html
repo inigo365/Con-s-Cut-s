@@ -114,16 +114,51 @@
   .footer-links { display: flex; gap: 2rem; }
   .footer-links a { text-decoration: none; color: var(--stone); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; }
   .footer-copy { font-size: 0.78rem; color: var(--stone); }
+
+  /* HAMBURGER */
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+  .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--cream); transition: all 0.25s; }
+  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; position: relative; }
+    .hamburger { display: flex; }
+    nav ul { display: none; flex-direction: column; gap: 0; position: absolute; top: 100%; left: 0; right: 0; background: rgba(26,18,9,0.98); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 1rem 0; }
+    nav ul.open { display: flex; }
+    nav ul li a { display: block; padding: 0.85rem 1.5rem; font-size: 0.9rem; }
+    .nav-cta { margin: 0.5rem 1.5rem; display: inline-block; border-radius: 2px; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-text { padding: 3.5rem 1.5rem 3rem; order: 1; }
+    .hero-visual { order: 2; height: 55vw; min-height: 220px; max-height: 320px; }
+    .hero-badge { bottom: 1.5rem; left: 0; padding: 1rem 1.5rem; }
+    .hero-badge strong { font-size: 1.4rem; }
+    .services { padding: 4rem 1.5rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .about { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 1.5rem; }
+    .stats { flex-wrap: wrap; gap: 1.5rem; }
+    .stat { min-width: calc(50% - 1rem); }
+    .quote { padding: 4rem 1.5rem; }
+    .form-grid { grid-template-columns: 1fr; }
+    .fg.full { grid-column: 1; }
+    .form-foot { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    footer { flex-direction: column; gap: 1.5rem; padding: 2rem 1.5rem; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
 </style>
 </head>
 <body>
 
 <nav>
   <a href="#" class="logo">Con's <em>Cuts</em></a>
-  <ul>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#quote" class="nav-cta">Get a quote</a></li>
+  <button class="hamburger" id="ham" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="nav-links">
+    <li><a href="#services" onclick="document.getElementById('nav-links').classList.remove('open');document.getElementById('ham').classList.remove('open')">Services</a></li>
+    <li><a href="#about" onclick="document.getElementById('nav-links').classList.remove('open');document.getElementById('ham').classList.remove('open')">About</a></li>
+    <li><a href="#quote" class="nav-cta" onclick="document.getElementById('nav-links').classList.remove('open');document.getElementById('ham').classList.remove('open')">Get a quote</a></li>
   </ul>
 </nav>
 
